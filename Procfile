@@ -1,1 +1,1 @@
-web: status-page
+web: francis-beacon

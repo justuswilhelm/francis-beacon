@@ -1,2 +1,3 @@
-package: github.com/justuswilhelm/go-web-template
-import: []
+package: github.com/justuswilhelm/francis-beacon
+import:
+- package: github.com/lib/pq
