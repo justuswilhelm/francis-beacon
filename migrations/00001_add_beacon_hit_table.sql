@@ -3,11 +3,11 @@
 CREATE TABLE beacon_hit (
 	id SERIAL,
 	date timestamp with time zone,
-	referer varchar(255),
-	path varchar(255),
+	scheme varchar(10),
 	host varchar(255),
+	path varchar(255),
 	query varchar(255),
-	remote_addr inet
+	fragment varchar(255)
 );
 
 -- +goose Down

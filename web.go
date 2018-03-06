@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 	"time"
 
@@ -24,13 +25,27 @@ var (
 func index(w http.ResponseWriter, r *http.Request) {
 	now := time.Now().Format(time.RFC3339)
 
-	_, err := db.Exec(
-		"INSERT INTO beacon_hit (date, referer, path, host, query) VALUES ($1, $2, $3, $4, $5)",
+	if r.Referer() == "" {
+		http.Error(w, "Empty Referer", http.StatusBadRequest)
+		return
+	}
+
+	url, err := url.Parse(r.Referer())
+
+	if err != nil {
+		log.Printf("Error when inserting beacon hit: %+v", err)
+		http.Error(w, "Invalid Referer", http.StatusBadRequest)
+		return
+	}
+
+	_, err = db.Exec(
+		"INSERT INTO beacon_hit (date, scheme, host, path, query, fragment) VALUES ($1, $2, $3, $4, $5, $6)",
 		now,
-		r.Referer(),
-		r.URL.Path,
-		r.Host,
-		r.URL.RawQuery,
+		url.Scheme,
+		url.Host,
+		url.Path,
+		url.RawQuery,
+		url.Fragment,
 	)
 	if err != nil {
 		log.Printf("Error when inserting beacon hit: %+v", err)
