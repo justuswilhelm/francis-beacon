@@ -1,8 +1,8 @@
-hash: 7fc16a0218b2780c0021d5abe638d76e31c54a514a520b8cbeb390ccb109c270
-updated: 2018-03-06T00:47:19.902981+01:00
+hash: a415e0ae5f103958508e20b6cf3fddc9ba2d6dc3c5ff1e8bff9ba363f471b511
+updated: 2018-03-06T13:13:08.736642+01:00
 imports:
 - name: github.com/joho/godotenv
-  version: 325433c502d409f3c3dc820098fb0cfe38d98dc7
+  version: a79fa1e548e2c689c241d10173efd51e5d689d5b
   subpackages:
   - autoload
 - name: github.com/lib/pq
@@ -10,5 +10,5 @@ imports:
   subpackages:
   - oid
 - name: github.com/urfave/negroni
-  version: c0db5feaa33826cd5117930c8f4ee5c0f565eec6
+  version: 5dbbc83f748fc3ad38585842b0aedab546d0ea1e
 testImports: []
